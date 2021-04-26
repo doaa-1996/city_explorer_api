@@ -13,14 +13,6 @@ server.listen(PORT,()=>{
 
 
 
-server.get('*',(req,res)=>{
-  let errObj = {
-    status: 404,
-    resText: 'sorry! this page not found'
-  };
-  res.status(404).send(errObj);
-});
-
 
 server.get('/location',(req,res) =>{
   let locationData = require('./data/location.json');
@@ -53,3 +45,11 @@ function Weather(weatherData){
   this.time = weatherData.valid_date;
 }
 
+
+server.get('*',(req,res)=>{
+  let errObj = {
+    status: 404,
+    resText: 'sorry! this page not found'
+  };
+  res.status(404).send(errObj);
+});
