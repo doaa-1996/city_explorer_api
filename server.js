@@ -34,6 +34,14 @@ server.get('/weather',(req,res) =>{
   res.send(newAarr);
 });
 
+server.get('*',(req,res)=>{
+  let errObj = {
+    status: 404,
+    resText: 'sorry! this page not found'
+  };
+  res.status(404).send(errObj);
+});
+
 function Location(locData){
   this.search_query = 'Lynnwood';
   this.formatted_query = locData[0].display_name;
@@ -45,11 +53,3 @@ function Weather(weatherData){
   this.time = weatherData.valid_date;
 }
 
-
-server.get('*',(req,res)=>{
-  let errObj = {
-    status: 404,
-    resText: 'sorry! this page not found'
-  };
-  res.status(404).send(errObj);
-});
